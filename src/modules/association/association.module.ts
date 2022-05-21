@@ -9,6 +9,7 @@ import { AssociationService } from './services/association.service';
     TypeOrmModule.forFeature([Association])
   ],
   controllers: [AssociationController],
-  providers: [AssociationService]
+  providers: [AssociationService],
+  exports:[AssociationService]
 })
 export class AssociationModule {}

@@ -18,13 +18,13 @@ export class Association {
   objetSocial: string;
 
   @Column()
-  phone: number;
+  phoneAssociation: number;
 
   @Column()
   address: string;
 
   @Column()
-  codePostal: number;
+  codePostal: string;
 
   @Column()
   city: string;
@@ -36,7 +36,7 @@ export class Association {
   logo: string;
 
   @Column()
-  email: string;
+  emailAssociation: string;
 
   @Column({ nullable: true })
   facebook: string;
