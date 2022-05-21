@@ -1,4 +1,5 @@
 export interface association_card{
+    
     id?:number;
     nom?:string;
     siege?:string;
@@ -8,4 +9,10 @@ export interface association_card{
     code_postal?:number;
     ville?:string;
     description?:string;
+    email?:string;
+    facebook?:string;
+    instagram?:string;
+    twitter?:string;
+ 
+
 }

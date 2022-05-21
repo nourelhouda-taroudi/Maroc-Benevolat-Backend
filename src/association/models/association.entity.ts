@@ -27,6 +27,8 @@ export class AssociationEntity{
     instagram:string;
     @Column()
     twitter:string;
+   
+  
 }
 
 

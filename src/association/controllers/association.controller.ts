@@ -17,6 +17,7 @@ export class AssociationController {
     @Get()
     findAll():Observable<association_card[]>{
         return this.associationService.findAllAssociations();
+        
     }
 
     // @Get()
