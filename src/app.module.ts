@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
+import { StoriesModule } from './modules/stories/stories.module';
 
 import { AssociationModule } from './association/association.module';
 
@@ -33,7 +34,11 @@ import { AssociationModule } from './association/association.module';
           } as TypeOrmModuleAsyncOptions
       }
     }),
-    AssociationModule
+
+    AssociationModule,
+
+    StoriesModule
+
   ],
   controllers: [AppController],
   providers: [AppService],
