@@ -49,7 +49,7 @@ export class UserService {
     throw new HttpException(
       {
         status: HttpStatus.FORBIDDEN,
-        error: 'email or password is invalid',
+        error: 'Email ou mot de passe est invalide',
       },
       HttpStatus.FORBIDDEN,
     );
