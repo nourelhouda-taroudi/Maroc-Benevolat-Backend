@@ -16,7 +16,7 @@ export class User {
     @Column()
     gender:string;
 
-    @Column()
+    @Column({width:100,type:'numeric'})
     phone:number;
 
     @Column()

@@ -11,6 +11,7 @@ export class UserSignUpDTO {
   gender: string;
   @IsEmail()
   email: string;
+  @IsNotEmpty()
   password: string;
   association: AssociationDTO;
 }

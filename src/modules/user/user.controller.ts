@@ -18,7 +18,9 @@ export class UserController {
   @Post('signUp')
   @ApiOperation({ description: 'methode to sign up the user ' })
   @ApiResponse({ status: 201, description: 'created' })
-  async signUp(@Body() userDto: UserSignUpDTO) {
+  async signUp(@Body() userDto: any) {
+    console.log({userDto});
+    
     return this.userService.signUp(userDto);
   }
 }

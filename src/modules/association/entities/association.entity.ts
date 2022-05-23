@@ -17,7 +17,7 @@ export class Association {
   @Column()
   objetSocial: string;
 
-  @Column()
+  @Column({width:100,type:'numeric'})
   phoneAssociation: number;
 
   @Column()
