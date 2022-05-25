@@ -4,7 +4,12 @@ import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
-import { AssociationModule } from './modules/association/association.module';
+import { StoriesModule } from './modules/stories/stories.module';
+
+import { AssociationModule } from './association/association.module';
+
+
+
 
 @Module({
   imports: [
@@ -29,7 +34,11 @@ import { AssociationModule } from './modules/association/association.module';
           } as TypeOrmModuleAsyncOptions
       }
     }),
-    AssociationModule
+
+    AssociationModule,
+
+    StoriesModule
+
   ],
   controllers: [AppController],
   providers: [AppService],
