@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { table } from 'console';
 import { get } from 'http';
 import { Observable, skip, take } from 'rxjs';
+import { UpdateResult } from 'typeorm';
 import { association_card } from '../models/association.interface';
 import { AssociationService } from '../services/association.service';
 
@@ -29,6 +30,17 @@ export class AssociationController {
     // }
 
     
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+      console.log(id)
+        return this.associationService.findAsso(Number(id));
+    }
 
+    @Put(':id')
+    update(
+        @Param('id') id: number,
+        @Body() association : association_card ): Observable<UpdateResult> {
+        return this.associationService.updateAsso(id, association)
+    }
 
 }
