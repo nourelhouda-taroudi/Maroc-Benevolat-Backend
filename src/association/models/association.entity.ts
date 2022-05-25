@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity('association')
 export class AssociationEntity{
     @PrimaryGeneratedColumn()
-    id : number;
+  id: number;
     @Column()
     nom:string;
     @Column()
