@@ -1,4 +1,5 @@
-export class AssociationDTO {
+export interface AssociationDTO {
+  id:number,
   address: string;
   nameAssociation: string;
   phoneAssociation: number;
