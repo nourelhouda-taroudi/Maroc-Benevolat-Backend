@@ -2,7 +2,8 @@ import { AssociationDTO } from './../dto/association.dto';
 import { Association } from './../entities/association.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
+import { from, Observable } from 'rxjs';
 
 @Injectable()
 export class AssociationService {
@@ -26,4 +27,29 @@ export class AssociationService {
         newAssociation.twitter=association.twitter;
         return this.associationRepository.save(newAssociation);
     }
+
+
+createCard(association: AssociationDTO): Observable<AssociationDTO>{
+    return from(this.associationRepository.save(association));
+}
+
+findAllAssociations():Observable<AssociationDTO[]>{
+    return from(this.associationRepository.find());
+}
+
+
+
+async findAsso(id: number) {
+    return await this.associationRepository.findOne({
+      select: ['id', 'nameAssociation','sigleAssociation','objetSocial','phoneAssociation','address','codePostal','city','infos','logo','emailAssociation','facebook','instagram','twitter'],
+      where: {
+        id,
+      },
+    });
+  }
+
+  updateAsso(id:number,association: AssociationDTO):Observable<UpdateResult>{
+    return from(this.associationRepository.update(id,association));
+
+}
 }
