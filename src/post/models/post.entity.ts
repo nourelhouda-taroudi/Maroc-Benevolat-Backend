@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
- @Entity('story')
-export class StoryEntity{
+ @Entity('posts')
+export class PostEntity{
  @PrimaryGeneratedColumn()
  id:number;
 
@@ -10,6 +10,9 @@ export class StoryEntity{
 
  @Column({default:''})
  image:string;
+  
+ @Column({default:''})
+ visualisation:string;
 
  @Column({default:true})
  like:boolean;

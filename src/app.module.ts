@@ -1,3 +1,4 @@
+import { PostsModule } from './post/posts.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -5,8 +6,10 @@ import { UserModule } from './modules/user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { StoriesModule } from './modules/stories/stories.module';
+import { AssociationModule } from './modules/association/association.module';
+import { CommonModule } from './modules/common/common.module';
 
-import { AssociationModule } from './association/association.module';
+
 
 
 
@@ -37,7 +40,9 @@ import { AssociationModule } from './association/association.module';
 
     AssociationModule,
 
-    StoriesModule
+    StoriesModule,
+    PostsModule,
+    CommonModule
 
   ],
   controllers: [AppController],
