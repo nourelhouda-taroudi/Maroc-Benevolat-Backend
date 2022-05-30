@@ -5,10 +5,11 @@ import { MulterModule } from '@nestjs/platform-express';
 import { CommonController } from './common.controller';
 import { CommonService } from './services/common.service';
 import { editFileName, imageFileFilter } from 'src/utils/file-storage';
+import { MailService } from './services/mail/mail.service';
 
 @Module({
   controllers: [CommonController],
-  providers: [CommonService],
+  providers: [CommonService, MailService],
   imports: [
     MulterModule.registerAsync({
       imports: [ConfigModule],
@@ -22,6 +23,7 @@ import { editFileName, imageFileFilter } from 'src/utils/file-storage';
       inject: [ConfigService],
     }),
   ],
+  exports:[MailService]
 })
 export class CommonModule {}
 

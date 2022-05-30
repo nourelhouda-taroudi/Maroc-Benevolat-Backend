@@ -1,3 +1,4 @@
+import { Otp } from './../entities/otp';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,6 +8,8 @@ import { AssociationService } from './../../association/services/association.ser
 import { UserSignUpDTO } from './../dto/user-register.dto';
 import { UserSignInDTO } from './../dto/user-signin.dto';
 import { User } from './../entities/user';
+import * as otpGenerator from 'otp-generator';
+import { MailService } from 'src/modules/common/services/mail/mail.service';
 
 @Injectable()
 export class UserService {
@@ -15,6 +18,9 @@ export class UserService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
+    @InjectRepository(Otp)
+    private readonly otpRepository: Repository<Otp>,
+    private readonly mailServicce:MailService
   ) {}
   async signUp(userDTO: UserSignUpDTO) {
     const { email, firstname, lastname, gender, password, phone, association } =
@@ -59,5 +65,33 @@ export class UserService {
       where: { email },
     });
     return user;
+  }
+  async forgetPassword(email:string){
+    const user=await this.findByEmail(email);
+    if(!user){
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: 'Email est invalide',
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    // const otpGenerator=require('otp-generator');
+    const code=otpGenerator.generate(6, {
+      alphabets: false,
+      upperCase: false,
+      specialChars: false,
+    });
+    console.log(code);
+    const otp=new Otp();
+    otp.code=code;
+    otp.user=user;
+    this.otpRepository.save(otp);
+    return this.mailServicce.example();
+    
+  }
+  resetPassword(){
+
   }
 }
