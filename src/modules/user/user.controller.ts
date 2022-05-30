@@ -1,6 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UserSignUpDTO } from './dto/user-register.dto';
 import { UserSignInDTO } from './dto/user-signin.dto';
 import { UserService } from './services/user.service';
 
@@ -22,5 +21,17 @@ export class UserController {
     console.log({userDto});
     
     return this.userService.signUp(userDto);
+  }
+  @Post('forget-password')
+  async forgetPassword(@Query('email') email:string){
+      return this.userService.forgetPassword(email);
+  }
+  @Post('otpValidation')
+  async otpValidation(@Query('email')email:string,@Query('code') code:string){
+      return this.userService.otpValidation(code,email);
+  }
+  @Put('resetPassword')
+  async resetPassword(@Query('email') email:string,@Query('password') password:string){
+      return this.userService.resetPassword(email,password);
   }
 }

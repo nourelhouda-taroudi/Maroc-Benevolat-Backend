@@ -25,6 +25,7 @@ export class AssociationService {
         newAssociation.nameAssociation=association.nameAssociation;
         newAssociation.sigleAssociation=association.sigleAssociation;
         newAssociation.twitter=association.twitter;
+        newAssociation.infos=association.infos;
         return this.associationRepository.save(newAssociation);
     }
 
@@ -52,4 +53,5 @@ async findAsso(id: number) {
     return from(this.associationRepository.update(id,association));
 
 }
+
 }

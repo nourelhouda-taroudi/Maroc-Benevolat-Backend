@@ -1,5 +1,6 @@
+import { Otp } from './otp';
 import { Association } from '../../association/entities/association.entity';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
 export class User {
@@ -19,7 +20,7 @@ export class User {
     @Column({width:100,type:'numeric'})
     phone:number;
 
-    @Column()
+    @Column({unique:true})
     email:string;
 
     @Column()
@@ -28,4 +29,9 @@ export class User {
     @OneToOne(()=>Association,(association)=>association.user)
     @JoinColumn({name:'association_id'})
     association:Association;
+
+    
+    @OneToMany(()=>Otp,(otp)=>otp.user)
+    otps:Otp[];
+
 }
