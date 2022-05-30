@@ -41,20 +41,20 @@ import * as path from 'path';
     PostsModule,
     CommonModule,
     MailerModule.forRootAsync({
-      useFactory: () => ({
-        // transport: 'smtp.gmail.com://chatapplication619@gmail.com:aqwszx123@smtp.domain.com',
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => ({
         transport: {
-          host: 'smtp.gmail.com',
-          port: 465,
-          ignoreTLS: true,
+          host: config.get('EMAIL_HOST'),
+          port: config.get('STMP_PORT'),
           secure: false,
           auth: {
-            user: 'chatapplication619@gmail.com',
-            pass: 'aqwszx123',
+            user: config.get('EMAIL'),
+            pass: config.get('PASSWORD'),
           },
         },
+
         defaults: {
-          from: '"nest-modules" <modules@nestjs.com>',
+          from: `${config.get('APP_NAME')} <${config.get('EMAIL')}>`,
         },
         template: {
           dir: path.join(process.env.PWD, 'src/template/'),
@@ -66,6 +66,7 @@ import * as path from 'path';
       }),
     }),
   ],
+
   controllers: [AppController],
   providers: [AppService],
 })
