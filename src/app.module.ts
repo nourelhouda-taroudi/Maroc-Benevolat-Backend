@@ -11,6 +11,10 @@ import { CommonModule } from './modules/common/common.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import * as path from 'path';
+import { AdminModule } from './modules/admin/admin.module';
+import { DemandesModule } from './demandes/demandes.module';
+import { SuppressionModule } from './suppression/suppression.module';
+
 
 @Module({
   imports: [
@@ -36,7 +40,7 @@ import * as path from 'path';
     }),
 
     AssociationModule,
-
+   AdminModule,
     StoriesModule,
     PostsModule,
     CommonModule,
@@ -65,6 +69,8 @@ import * as path from 'path';
         },
       }),
     }),
+    DemandesModule,
+    SuppressionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -26,7 +26,7 @@ export class User {
     @Column()
     password:string;
 
-    @OneToOne(()=>Association,(association)=>association.user)
+    @OneToOne(()=>Association,(association)=>association.user, { onDelete: 'CASCADE' })
     @JoinColumn({name:'association_id'})
     association:Association;
 

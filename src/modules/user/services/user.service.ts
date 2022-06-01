@@ -10,6 +10,8 @@ import { UserSignInDTO } from './../dto/user-signin.dto';
 import { User } from './../entities/user';
 import * as otpGenerator from 'otp-generator';
 import { MailService } from 'src/modules/common/services/mail/mail.service';
+import { UserInter } from '../entities/user.interface';
+import { from, Observable } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -94,4 +96,16 @@ export class UserService {
   resetPassword(){
 
   }
+
+
+  
+
+
+createUser(user : UserInter): Observable<UserInter>{
+
+    return from(this.userRepository.save(user));
+
+}
+
+  
 }
