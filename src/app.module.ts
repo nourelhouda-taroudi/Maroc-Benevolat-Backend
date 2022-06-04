@@ -1,3 +1,4 @@
+import { StoriesModule } from './modules/stories/stories.module';
 import { PostsModule } from './post/posts.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -5,7 +6,6 @@ import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
-import { StoriesModule } from './modules/stories/stories.module';
 import { AssociationModule } from './modules/association/association.module';
 import { CommonModule } from './modules/common/common.module';
 import { MailerModule } from '@nestjs-modules/mailer';
@@ -34,10 +34,8 @@ import * as path from 'path';
         } as TypeOrmModuleAsyncOptions;
       },
     }),
-
-    AssociationModule,
-
     StoriesModule,
+    AssociationModule,
     PostsModule,
     CommonModule,
     MailerModule.forRootAsync({
@@ -57,7 +55,7 @@ import * as path from 'path';
           from: '"nest-modules" <modules@nestjs.com>',
         },
         template: {
-          dir: path.join(process.env.PWD, 'src/template/'),
+          dir: path.join(),
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,

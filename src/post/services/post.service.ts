@@ -19,15 +19,16 @@ export class PostService {
     createPost(post:Posts):Observable<Posts>{
         return from(this.postRepository.save(post));
     } 
-    findAllPosts():Observable<Posts[]>{
-        return from(this.postRepository.find({
-            order: {
-                createdAt: "ASC",
+    // findAllPosts():Observable<Posts[]>{
+    //     return from(this.postRepository.find({
+    //         order: {
+    //             createdAt: "ASC",
                
-            }}));
-    }
+    //         }}));
+    // }
     findPosts(take:number= 10, skip:number= 0): Observable<Posts[]> {
        return from( this.postRepository.findAndCount({take,skip}).then(([posts])=>{
+           
             return <Posts[]>posts
         }))
     

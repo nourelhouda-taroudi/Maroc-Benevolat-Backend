@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
  @Entity('posts')
 export class PostEntity{
@@ -7,12 +7,12 @@ export class PostEntity{
 
  @Column({default:''})
  text:string;
-
- @Column({default:''})
- image:string;
   
  @Column({default:''})
  visualisation:string;
+
+ @Column({default:''})
+ image:string;
 
  @Column({default:true})
  like:boolean;
@@ -22,6 +22,5 @@ export class PostEntity{
 
  @CreateDateColumn()
  createdAt:Date;
-
 }
 

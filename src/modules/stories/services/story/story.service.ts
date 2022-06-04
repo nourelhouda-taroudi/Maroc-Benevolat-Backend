@@ -22,11 +22,11 @@ export class StoryService {
     findAllStories():Observable<Story[]>{
         return from(this.storyRepository.find({
             order: {
-                createdAt: "ASC",
+                createdAt: "desc",
                
             }}));
     }
-    findStories(take:number= 10, skip:number= 0): Observable<Story[]> {
+    findStories(take:number= 5, skip:number= 0): Observable<Story[]> {
        return from( this.storyRepository.findAndCount({take,skip}).then(([stories])=>{
             return <Story[]>stories
         }))
