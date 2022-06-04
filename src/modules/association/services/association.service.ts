@@ -2,7 +2,7 @@ import { AssociationDTO } from './../dto/association.dto';
 import { Association } from './../entities/association.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateResult } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { from, Observable } from 'rxjs';
 
 @Injectable()
@@ -52,6 +52,11 @@ async findAsso(id: number) {
   updateAsso(id:number,association: AssociationDTO):Observable<UpdateResult>{
     return from(this.associationRepository.update(id,association));
 
+}
+
+
+deletAsso(id:number):Observable<DeleteResult>{
+  return from(this.associationRepository.delete(id));
 }
 
 }

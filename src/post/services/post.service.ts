@@ -8,9 +8,7 @@ import { from, Observable } from 'rxjs';
 
 @Injectable()
 export class PostService {
-    like() {
-        throw new Error('Method not implemented.');
-    }
+   
     
     constructor(
         @InjectRepository(PostEntity)
@@ -41,4 +39,7 @@ export class PostService {
         return from(this.postRepository.delete(id));
     }
     
+    like() {
+      
+    }
 }
