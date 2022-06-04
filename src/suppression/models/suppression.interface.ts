@@ -5,6 +5,7 @@ export interface SuppInter{
     name:string;
     name_asso:string;
     email_asso:string;
+    text: string
   
 
 }

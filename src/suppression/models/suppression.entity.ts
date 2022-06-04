@@ -17,6 +17,9 @@ name_asso:string;
 @Column()
 email_asso:string;
 
+@Column()
+text:string;
+
 
 
 

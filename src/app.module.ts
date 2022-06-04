@@ -14,6 +14,9 @@ import * as path from 'path';
 import { AdminModule } from './modules/admin/admin.module';
 import { DemandesModule } from './demandes/demandes.module';
 import { SuppressionModule } from './suppression/suppression.module';
+import { MembresModule } from './membres/membres.module';
+import { LikesModule } from './likes/likes.module';
+
 
 
 @Module({
@@ -71,6 +74,9 @@ import { SuppressionModule } from './suppression/suppression.module';
     }),
     DemandesModule,
     SuppressionModule,
+    MembresModule,
+    LikesModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],
