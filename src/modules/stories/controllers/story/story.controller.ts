@@ -3,23 +3,6 @@ import { Story } from './../../models/story.interface';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { StoryService } from '../../services/story/story.service';
 import { DeleteResult, UpdateResult } from 'typeorm';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
-
-// export const storage = {
-//     storage: diskStorage({
-//         destination: './uploads/images',
-//         filename: (req, file, cb) => {
-//             const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
-//             const extension: string = path.parse(file.originalname).ext;
-
-//             cb(null, `${filename}${extension}`)
-//         }
-//     })
-
-// }
 
 @Controller('story')
 export class StoryController {
@@ -33,28 +16,22 @@ export class StoryController {
           return this.storyService.findAllStories();
     }
     @Get()
-    findSelected(@Query('take') take: number = 10, @Query('skip') skip: number = 1): Observable<Story[]> {
-        take = take > 20 ? 20 : take;
+    findSelected(@Query('take') take: number = 1, @Query('skip') skip: number = 0): Observable<Story[]> {
+        take = take > 5 ? 5 : take;
         return this.storyService.findStories(take, skip);
     }
-    @Put(':id')
+    @Put(':storyId')
     update(
-        @Param('id') id: number,
+        @Param('storyId') storyId: number,
         @Body() story: Story
     ): Observable<UpdateResult> {
-        return this.storyService.updateStory(id, story)
+        return this.storyService.updateStory(storyId, story)
     }
-    @Delete(':id')
-    delete(@Param('id') id: number): Observable<DeleteResult> {
-        return this.storyService.deletStory(id);
+    @Delete(':storyId')
+    delete(@Param('storyId') storyId: number): Observable<DeleteResult> {
+        return this.storyService.deletStory(storyId);
     }
-    // @Post('upload')
-    // @UseInterceptors(FileInterceptor('file', storage))
-    // uploadFile(@UploadedFile() file): Observable<Object> {
-    //     console.log(file);
-    //     return of({ imagepath : file.filename});
-    // }
-    @Patch(':id')
+    @Patch(':storyId')
     likes(){
         return this.storyService.like();
     }

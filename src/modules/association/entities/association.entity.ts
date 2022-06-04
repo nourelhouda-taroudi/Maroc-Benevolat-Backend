@@ -47,6 +47,9 @@ export class Association {
   @Column({ nullable: true })
   twitter: string;
 
-  @OneToOne(() => User, (user) => user.association)
+  @OneToOne(() => User, (user) => user.association  , { onDelete: 'CASCADE' })  
   user: User;
+
+ 
+
 }
