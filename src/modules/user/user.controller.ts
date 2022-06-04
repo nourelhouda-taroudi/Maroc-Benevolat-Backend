@@ -14,7 +14,7 @@ export class UserController {
   @ApiOperation({ description: 'methode to sign in the user ' })
   @ApiResponse({ status: 200, description: 'ok' })
   signIn(@Body() userDto: UserSignInDTO) {
-    return this.userService.signIn(userDto);
+    return this.userService.signIn(userDto)
   }
   @Post('signUp')
   @ApiOperation({ description: 'methode to sign up the user ' })
