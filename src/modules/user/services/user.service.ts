@@ -20,7 +20,7 @@ export class UserService {
     private readonly jwtService: JwtService,
     @InjectRepository(Otp)
     private readonly otpRepository: Repository<Otp>,
-    private readonly mailServicce:MailService
+    private readonly mailServicce: MailService,
   ) {}
   async signUp(userDTO: UserSignUpDTO) {
     const { email, firstname, lastname, gender, password, phone, association } =
@@ -60,15 +60,12 @@ export class UserService {
       HttpStatus.FORBIDDEN,
     );
   }
-  async findByEmail(email: string) {
+  async findByEmail(email: string) {    
     const user = await this.userRepository.findOne({
       where: { email },
     });
-    return user;
-  }
-  async forgetPassword(email:string){
-    const user=await this.findByEmail(email);
-    if(!user){
+    
+    if (!user) {
       throw new HttpException(
         {
           status: HttpStatus.NOT_FOUND,
@@ -77,21 +74,88 @@ export class UserService {
         HttpStatus.NOT_FOUND,
       );
     }
+    return user;
+  }
+  async forgetPassword(email: string) {
+    const user = await this.findByEmail(email);
+  
     // const otpGenerator=require('otp-generator');
-    const code=otpGenerator.generate(6, {
+    const code = otpGenerator.generate(6, {
       alphabets: false,
       upperCase: false,
       specialChars: false,
     });
     console.log(code);
-    const otp=new Otp();
-    otp.code=code;
-    otp.user=user;
+    const otp = new Otp();
+    otp.code = code;
+    otp.user = user;
     this.otpRepository.save(otp);
-    return this.mailServicce.example();
-    
+    return this.mailServicce.sendOtp(
+      email,
+      'Code de vérification : Pour réinitialiser mot de passe',
+      user.firstname + ' ' + user.lastname,
+      code,
+    );
   }
-  resetPassword(){
+  //en param otp,email de utilisateur
+  async otpValidation(code: string, email: string) {
+    console.log(email);
+    if(!code){
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_ACCEPTABLE,
+          error: 'Code est obligatoire',
+        },
+        HttpStatus.NOT_ACCEPTABLE,
+      );
+    }
+    if(!email){
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_ACCEPTABLE,
+          error: 'Email est obligatoire',
+        },
+        HttpStatus.NOT_ACCEPTABLE,
+      );
+    }
+        //step1:get user by email
+    const user = await this.findByEmail(email);
+    //STEP2:get otp by otpString
+    const otp = await this.otpRepository.findOne({
+      where: { code },
+      relations: ['user'],
+    });
+    if (!otp) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: 'Code est invalid',
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    //STEP3: compare de user with  otp user (if == otp valide sinon 403)
 
+    if (user.id == otp.user.id) {
+      return { message: 'Code est valide' };
+    }
+    throw new HttpException(
+      {
+        status: HttpStatus.FORBIDDEN,
+        error: 'Code est invalid',
+      },
+      HttpStatus.FORBIDDEN,
+    );
+  }
+  //prend en param email,nouveauPassword
+  async resetPassword(email: string, newPassword: string) {
+    //GET user by email
+    const user = await this.findByEmail(email);
+    //update user password(before insert hash password)
+    const saltOrRounds = 10;
+    const hash = await bcrypt.hash(newPassword, saltOrRounds);
+    user.password = hash;
+    await this.userRepository.save(user);
+    return { message: 'Mot de passe est réinitialisé' };
   }
 }
