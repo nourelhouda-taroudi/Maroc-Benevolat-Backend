@@ -1,23 +1,27 @@
+import { ConfigService } from '@nestjs/config';
+import { User } from './../../../user/entities/user';
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class MailService {
-    constructor(private readonly mailerService: MailerService) {}
-    public example(): void {
+    constructor(private readonly mailerService: MailerService,private readonly config:ConfigService) {}
+    //PREND en paramétre email et subject et userName
+    public sendOtp(email:string,subject:string,userName:string,code:string): void {
         this.mailerService
           .sendMail({
-            to: 'nourelhoudataroudi@gmail.com',
-            from: 'noreply@nestjs.com',
-            subject: 'Testing Nest Mailermodule with template ✔',
-            template: 'index', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
+            to: email,
+            from: this.config.get('EMAIL'),
+            subject: subject,
+            template: 'forgetPassword', // The `.pug`, `.ejs` or `.hbs` extension is appended automatically.
             context: {
               // Data to be sent to template engine.
-              code: 'cf1a3f828287',
-              username: 'john doe',
+              code: code ,
+              username: userName,
             },
           })
-          .then(() => {})
+          .then(() => {console.log("email sended");
+          })
           .catch((error) => {console.log(error);
           });
       }

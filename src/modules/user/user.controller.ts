@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Query } from '@nestjs/common';
+import { Body, Controller, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import { UserSignInDTO } from './dto/user-signin.dto';
@@ -36,4 +36,12 @@ export class UserController {
       return this.userService.createUser(user);
     }
 
+  @Post('otpValidation')
+  async otpValidation(@Query('email')email:string,@Query('code') code:string){
+      return this.userService.otpValidation(code,email);
+  }
+  @Put('resetPassword')
+  async resetPassword(@Query('email') email:string,@Query('password') password:string){
+      return this.userService.resetPassword(email,password);
+  }
 }

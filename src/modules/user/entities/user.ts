@@ -20,7 +20,7 @@ export class User {
     @Column({width:100,type:'numeric'})
     phone:number;
 
-    @Column()
+    @Column({unique:true})
     email:string;
 
     @Column()
