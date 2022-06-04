@@ -60,10 +60,11 @@ export class UserService {
       HttpStatus.FORBIDDEN,
     );
   }
-  async findByEmail(email: string) {
+  async findByEmail(email: string) {    
     const user = await this.userRepository.findOne({
       where: { email },
     });
+    
     if (!user) {
       throw new HttpException(
         {
@@ -98,7 +99,26 @@ export class UserService {
   }
   //en param otp,email de utilisateur
   async otpValidation(code: string, email: string) {
-    //step1:get user by email
+    console.log(email);
+    if(!code){
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_ACCEPTABLE,
+          error: 'Code est obligatoire',
+        },
+        HttpStatus.NOT_ACCEPTABLE,
+      );
+    }
+    if(!email){
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_ACCEPTABLE,
+          error: 'Email est obligatoire',
+        },
+        HttpStatus.NOT_ACCEPTABLE,
+      );
+    }
+        //step1:get user by email
     const user = await this.findByEmail(email);
     //STEP2:get otp by otpString
     const otp = await this.otpRepository.findOne({
