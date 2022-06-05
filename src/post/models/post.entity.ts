@@ -7,6 +7,8 @@ export class PostEntity{
 
  @Column({default:''})
  text:string;
+ @Column({default:''})
+ commentaire:string;
   
  @Column({default:''})
  visualisation:string;
