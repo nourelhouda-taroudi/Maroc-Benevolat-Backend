@@ -1,12 +1,8 @@
-import { Observable, of, take } from 'rxjs';
-import { Story } from './../../models/story.interface';
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
-import { StoryService } from '../../services/story/story.service';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
+import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import path from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import { StoryService } from '../../services/story/story.service';
+import { Story } from './../../models/story.interface';
 
 // export const storage = {
 //     storage: diskStorage({
@@ -58,5 +54,8 @@ export class StoryController {
     likes(){
         return this.storyService.like();
     }
-
+    @Get('association/:id_association')
+    getAssociationStories(@Param('id_association') associationId: number){
+        return this.storyService.getAssociationStories(associationId);
+    }
 }

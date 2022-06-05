@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Association } from './../../modules/association/entities/association.entity';
 
  @Entity('posts')
 export class PostEntity{
@@ -22,6 +23,10 @@ export class PostEntity{
 
  @CreateDateColumn()
  createdAt:Date;
+
+ @ManyToOne(()=>Association,(association)=>association.posts)
+ @JoinColumn({name:'association_id'})
+ association:Association;
 
 }
 
