@@ -8,9 +8,33 @@ import { Story } from './../../models/story.interface';
 
 @Injectable()
 export class StoryService {
-  like() {
-    throw new Error('Method not implemented.');
-  }
+    like() {
+        throw new Error('Method not implemented.');
+    }
+    
+    // constructor(
+    //     @InjectRepository(StoryEntity)
+    //     private readonly storyRepository: Repository<StoryEntity>
+    //     ){}
+    // createStory(story:Story):Observable<Story>{
+    //     return from(this.storyRepository.save(story));
+    // } 
+    // findAllStories():Observable<Story[]>{
+    //     return from(this.storyRepository.find({
+    //         order: {
+    //             createdAt: "desc",
+               
+    //         }}));
+    // }
+    // findStories(take:number= 5, skip:number= 0): Observable<Story[]> {
+    //    return from( this.storyRepository.findAndCount({take,skip}).then(([stories])=>{
+    //         return <Story[]>stories
+    //     }))
+    
+    // }
+    // updateStory(id:number,story:Story):Observable<UpdateResult>{
+    //     return from(this.storyRepository.update(id,story));
+    //   }
 
   constructor(
     @InjectRepository(StoryEntity)

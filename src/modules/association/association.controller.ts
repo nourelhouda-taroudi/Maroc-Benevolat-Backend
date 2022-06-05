@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { UpdateResult } from 'typeorm';
+import { DeleteResult, UpdateResult } from 'typeorm';
 import { AssociationDTO } from './dto/association.dto';
 import { AssociationService } from './services/association.service';
 
@@ -37,5 +45,10 @@ export class AssociationController {
     @Body() association: AssociationDTO,
   ): Observable<UpdateResult> {
     return this.associationService.updateAsso(id, association);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: number): Observable<DeleteResult> {
+    return this.associationService.deletAsso(id);
   }
 }

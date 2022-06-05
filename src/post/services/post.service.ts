@@ -1,11 +1,10 @@
-import { AssociationService } from './../../modules/association/services/association.service';
-import { CreateDateColumn } from 'typeorm';
-import { Posts } from './../../post/models/post.interface';
-import { PostEntity } from './../../post/models/post.entity';
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { AssociationService } from './../../modules/association/services/association.service';
+import { PostEntity } from './../../post/models/post.entity';
+import { Posts } from './../../post/models/post.interface';
 
 @Injectable()
 export class PostService {
@@ -40,9 +39,6 @@ export class PostService {
   updatePost(id: number, post: Posts): Observable<UpdateResult> {
     return from(this.postRepository.update(id, post));
   }
-  deletPost(id: number): Observable<DeleteResult> {
-    return from(this.postRepository.delete(id));
-  }
 
   async getAssociationPosts(idAssociation: number) {
     const association = await this.associationService.findAsso(idAssociation);
@@ -60,5 +56,8 @@ export class PostService {
         association,
       },
     });
+  }
+  deletPost(id: number): Observable<DeleteResult> {
+    return from(this.postRepository.delete(id));
   }
 }

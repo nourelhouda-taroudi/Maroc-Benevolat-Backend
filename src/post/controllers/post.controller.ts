@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { PostService } from '../../post/services/post.service';
@@ -11,9 +11,14 @@ export class PostController {
     create(@Body() post: Posts): Observable<Posts> {
         return this.postService.createPost(post);
     }
+    // @Get()
+    // findAll():Observable<Posts[]>{
+    //       return this.postService.findAllPosts();
+    // }
     @Get()
-    findAll():Observable<Posts[]>{
-          return this.postService.findAllPosts();
+    findSelected(@Query('take') take: number = 1, @Query('skip') skip: number = 1): Observable<Posts[]> {
+        take = take > 50 ? 50 : take;
+        return this.postService.findPosts(take, skip);
     }
     @Put(':id')
     update(
@@ -26,17 +31,10 @@ export class PostController {
     delete(@Param('id') id: number): Observable<DeleteResult> {
         return this.postService.deletPost(id);
     }
-    // @Post('upload')
-    // @UseInterceptors(FileInterceptor('file', storage))
-    // uploadFile(@UploadedFile() file): Observable<Object> {
-    //     console.log(file);
-    //     return of({ imagepath : file.filename});
-    // }
     @Patch(':id')
     likes(){
         return this.postService.like();
     }
-
     @Get('association/:id_association')
     getAssociationPosts(@Param('id_association') idAssociation: number){
         return this.postService.getAssociationPosts(idAssociation);
