@@ -1,8 +1,8 @@
-import { Observable, of, take } from 'rxjs';
-import { Story } from './../../models/story.interface';
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
-import { StoryService } from '../../services/story/story.service';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
+import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
+import { StoryService } from '../../services/story/story.service';
+import { Story } from './../../models/story.interface';
 
 @Controller('story')
 export class StoryController {
@@ -35,5 +35,8 @@ export class StoryController {
     likes(){
         return this.storyService.like();
     }
-
+    @Get('association/:id_association')
+    getAssociationStories(@Param('id_association') associationId: number){
+        return this.storyService.getAssociationStories(associationId);
+    }
 }

@@ -1,8 +1,8 @@
-import { Observable } from 'rxjs';
-import { Posts} from './../../post/models/post.interface';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
-import { PostService } from '../../post/services/post.service';
+import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
+import { PostService } from '../../post/services/post.service';
+import { Posts } from './../../post/models/post.interface';
 
 @Controller('post')
 export class PostController {
@@ -34,5 +34,9 @@ export class PostController {
     @Patch(':id')
     likes(){
         return this.postService.like();
+    }
+    @Get('association/:id_association')
+    getAssociationPosts(@Param('id_association') idAssociation: number){
+        return this.postService.getAssociationPosts(idAssociation);
     }
 }
