@@ -19,7 +19,7 @@ export class PostEntity {
   @Column({ default: '' })
   visualisation: string;
 
-  @Column({ default: '' })
+  @Column({ default: '', nullable: true })
   image: string;
 
   @Column({ default: true })

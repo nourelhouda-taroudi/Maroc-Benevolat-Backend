@@ -1,5 +1,5 @@
-import { Association } from './../../association/entities/association.entity';
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Association } from './../../association/entities/association.entity';
 
  @Entity('story')
 export class StoryEntity{

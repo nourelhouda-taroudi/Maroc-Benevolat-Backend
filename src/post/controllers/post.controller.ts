@@ -8,7 +8,7 @@ import { Posts } from './../../post/models/post.interface';
 export class PostController {
     constructor(private postService: PostService) { }
     @Post()
-    create(@Body() post: Posts): Observable<Posts> {
+    create(@Body() post: Posts): Promise<Posts> {
         return this.postService.createPost(post);
     }
     // @Get()

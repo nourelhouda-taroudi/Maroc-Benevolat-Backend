@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { instanceToPlain, plainToClass } from 'class-transformer';
 import { from, Observable } from 'rxjs';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { AssociationService } from './../../modules/association/services/association.service';
@@ -17,8 +18,31 @@ export class PostService {
     private readonly postRepository: Repository<PostEntity>,
     private readonly associationService: AssociationService,
   ) {}
-  createPost(post: Posts): Observable<Posts> {
-    return from(this.postRepository.save(post));
+  async createPost(post: Posts): Promise<PostEntity> {
+    if (post.associationId === undefined) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_ACCEPTABLE,
+          error: "Id de l'ssociation est obligatoire",
+        },
+        HttpStatus.NOT_ACCEPTABLE,// 406 status code
+      );
+    }
+    const association = await this.associationService.findAsso(
+      post.associationId,
+    );
+    if (!association) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: 'Association non trouvé',
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    const newPost = plainToClass(PostEntity, instanceToPlain(post));
+    newPost.association = association;
+    return this.postRepository.save(newPost);
   }
   findAllPosts(): Observable<Posts[]> {
     return from(
