@@ -25,9 +25,12 @@ export class PostService {
     //         }}));
     // }
     findPosts(take:number= 10, skip:number= 0): Observable<Posts[]> {
-       return from( this.postRepository.findAndCount({take,skip}).then(([posts])=>{
-           
-            return <Posts[]>posts
+       return from( this.postRepository.findAndCount({ order: {
+        createdAt: 'DESC',
+      },take,skip}).then(([posts])  =>{
+        
+            return (<Posts[]>posts)
+
         }))
     
     }

@@ -19,6 +19,7 @@ export class PostController {
     findSelected(@Query('take') take: number = 1, @Query('skip') skip: number = 1): Observable<Posts[]> {
         take = take > 50 ? 50 : take;
         return this.postService.findPosts(take, skip);
+        
     }
     @Put(':id')
     update(

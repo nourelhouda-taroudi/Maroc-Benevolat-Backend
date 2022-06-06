@@ -1,7 +1,8 @@
-import { Body, Controller, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { UserSignInDTO } from './dto/user-signin.dto';
+import { User } from './entities/user';
 import { UserInter } from './entities/user.interface';
 import { UserService } from './services/user.service';
 
@@ -29,7 +30,12 @@ export class UserController {
       return this.userService.forgetPassword(email);
   }
 
-  
+  @Get(':email')
+    findOneEmail(@Param('email') email: string) {
+      console.log(email)
+        return this.userService.findByEmail(email);
+    }
+
   @Post()
     create(@Body() user: UserInter): Observable<UserInter>
     {
