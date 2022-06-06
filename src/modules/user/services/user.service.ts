@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
-import { Repository } from 'typeorm';
+import { createQueryBuilder, Repository } from 'typeorm';
 import { AssociationService } from './../../association/services/association.service';
 import { UserSignUpDTO } from './../dto/user-register.dto';
 import { UserSignInDTO } from './../dto/user-signin.dto';
@@ -12,6 +12,7 @@ import * as otpGenerator from 'otp-generator';
 import { MailService } from 'src/modules/common/services/mail/mail.service';
 import { UserInter } from '../entities/user.interface';
 import { from, Observable } from 'rxjs';
+import { Association } from 'src/modules/association/entities/association.entity';
 
 @Injectable()
 export class UserService {
@@ -170,6 +171,4 @@ createUser(user : UserInter): Observable<UserInter>{
     return from(this.userRepository.save(user));
 
 }
-
-  
 }

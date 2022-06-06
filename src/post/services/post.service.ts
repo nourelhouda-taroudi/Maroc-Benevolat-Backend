@@ -78,7 +78,8 @@ export class PostService {
     return this.postRepository.find({
       where: {
         association,
-      },
+      },order: {
+        createdAt: 'DESC'}
     });
   }
   deletPost(id: number): Observable<DeleteResult> {

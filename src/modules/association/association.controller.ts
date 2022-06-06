@@ -25,13 +25,9 @@ export class AssociationController {
     return this.associationService.findAllAssociations();
   }
 
-  // @Get()
-  // findSelected(@Query('take') take : number = 1,
-  // @Query('skip') skip : number = 1,
-  // ):Observable<association_card[]>{
-  //     take = take > 20 ? 20  : take;
-  //     return this.associationService.findCards(take,skip);
-  // }
+    
+ 
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {
