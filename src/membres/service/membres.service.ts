@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { MembresEntity } from '../models/membres.entity';
 import { Membres } from '../models/membres.interface';
 
@@ -23,4 +23,23 @@ export class MembresService {
         return from(this.membreRepository.find());
     }
 
-}
+
+
+
+    async findAdresse(id_asso:number) {
+        return await this.membreRepository.find({
+
+
+            where: {
+             id_asso
+            },
+          });
+      }
+
+     
+      deletMembre(id:number):Observable<DeleteResult>{
+        return from(this.membreRepository.delete(id));
+      }
+
+   
+}   
