@@ -13,11 +13,15 @@ export class PostEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: '' })
-  text: string;
+ @Column({default:''})
+ text:string;
+ @Column({default:''})
+ commentaire:string;
+  
+ @Column({default:''})
+ visualisation:string;
 
-  @Column({ default: '' })
-  visualisation: string;
+
 
   @Column({ default: '', nullable: true })
   image: string;
