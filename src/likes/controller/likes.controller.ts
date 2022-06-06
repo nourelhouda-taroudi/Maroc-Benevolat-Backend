@@ -25,8 +25,7 @@ export class LikesController {
 
     @Post('/adresse')
     findOne( @Body('id_post') id_post: number,
-        @Body('adresse') adresse: string
-    ) {
+        @Body('adresse') adresse: string ) {
   
         return this.likeService.findAdresse(id_post,adresse);
     }

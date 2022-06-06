@@ -35,7 +35,7 @@ import { LikesModule } from './likes/likes.module';
           username: configService.get('DB_USERNAME'),
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_NAME'),
-          synchronize: configService.get('DB_SYNC'),
+          synchronize: configService.get('DB_SYNC')==='true',
           logging: true,
           autoLoadEntities: true,
         } as TypeOrmModuleAsyncOptions;

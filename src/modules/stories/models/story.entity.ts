@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Association } from './../../association/entities/association.entity';
 
  @Entity('story')
 export class StoryEntity{
@@ -19,6 +20,10 @@ export class StoryEntity{
 
  @CreateDateColumn()
  createdAt:Date;
+
+ @ManyToOne(()=>Association,(association)=>association.stories)
+ @JoinColumn({name:'association_id'})
+ association:Association;
 
 }
 

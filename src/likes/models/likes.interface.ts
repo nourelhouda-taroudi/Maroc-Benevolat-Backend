@@ -6,6 +6,7 @@ export interface likes{
     adresse:string,
     id:number,
 
+
     
 
 }

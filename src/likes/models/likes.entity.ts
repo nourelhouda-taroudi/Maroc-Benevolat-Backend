@@ -1,28 +1,13 @@
-import { Address } from "cluster";
-import { identity } from "rxjs";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('likes')
-export class likesEntity{
+export class likesEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column()
+  id_post: number;
 
-@Column()
-id_post:number;
-
-
-@Column()
-adresse:string;
-
-
-
-
-
-
-
-
-
-
-
+  @Column()
+  adresse: string;
 }

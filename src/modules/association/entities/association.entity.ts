@@ -1,7 +1,7 @@
+import { StoryEntity } from './../../stories/models/story.entity';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../../user/entities/user';
-import { Column, OneToOne } from 'typeorm';
-import { PrimaryGeneratedColumn } from 'typeorm';
-import { Entity } from 'typeorm';
+import { PostEntity } from './../../../post/models/post.entity';
 
 @Entity('associations')
 export class Association {
@@ -50,6 +50,9 @@ export class Association {
   @OneToOne(() => User, (user) => user.association  , { onDelete: 'CASCADE' })  
   user: User;
 
- 
+  @OneToMany(() => PostEntity, (post) =>post.association)
+  posts: PostEntity[];
 
+  @OneToMany(() => StoryEntity, (post) =>post.association)
+  stories: StoryEntity[];
 }
