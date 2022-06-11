@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-06-11T10:18:51.061Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36" etag="LQOax-TKTXrYNuKPbuqo" version="19.0.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-06-11T10:45:52.979Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36" etag="RNtSEfsOx0peeg_oOH43" version="19.0.3" type="github">
   <diagram name="Page-1" id="13e1069c-82ec-6db2-03f1-153e76fe0fe0">
-    <mxGraphModel dx="782" dy="528" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="782" dy="471" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -46,7 +46,7 @@
         <mxCell id="E-PpELVEflnv67zB8whN-7" value="3. valider formulaire" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=11;fontFamily=Verdana;" vertex="1" parent="1">
           <mxGeometry x="135" y="240" width="130" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="E-PpELVEflnv67zB8whN-10" value="&lt;b&gt;ref &lt;/b&gt;S&#39;inscrire" style="shape=umlFrame;whiteSpace=wrap;html=1;fontFamily=Verdana;fontSize=11;" vertex="1" parent="1">
+        <mxCell id="E-PpELVEflnv67zB8whN-10" value="&lt;b&gt;ref &lt;/b&gt;S&#39;inscrire" style="shape=umlFrame;whiteSpace=wrap;html=1;fontFamily=Verdana;fontSize=11;width=90;height=30;" vertex="1" parent="1">
           <mxGeometry x="70" y="270" width="300" height="220" as="geometry" />
         </mxCell>
         <mxCell id="E-PpELVEflnv67zB8whN-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1">
@@ -102,6 +102,88 @@
         <mxCell id="E-PpELVEflnv67zB8whN-22" value="&lt;font face=&quot;Verdana&quot; style=&quot;font-size: 11px;&quot;&gt;6. message de confirmation&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="E-PpELVEflnv67zB8whN-21">
           <mxGeometry x="0.1656" y="8" relative="1" as="geometry">
             <mxPoint x="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-23" value="System" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="650" y="80" width="100" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-24" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="E-PpELVEflnv67zB8whN-23">
+          <mxGeometry x="45" y="100" width="10" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-42" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;2. valide infos&lt;/font&gt;" style="html=1;verticalAlign=bottom;endArrow=block;labelBackgroundColor=none;fontFamily=Verdana;fontSize=12;elbow=vertical;edgeStyle=orthogonalEdgeStyle;curved=1;startArrow=none;" edge="1" parent="E-PpELVEflnv67zB8whN-23" source="E-PpELVEflnv67zB8whN-43">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="110" as="sourcePoint" />
+            <mxPoint x="60" y="120" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="90" y="110" />
+              <mxPoint x="90" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-43" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="E-PpELVEflnv67zB8whN-23">
+          <mxGeometry x="50" y="110" width="10" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-27" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12;align=center;" vertex="1" parent="1">
+          <mxGeometry x="482" y="80" width="100" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-28" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;1. seConnecter(email,pwd)&lt;/font&gt;" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;labelBackgroundColor=none;fontFamily=Verdana;fontSize=12;edgeStyle=elbowEdgeStyle;elbow=vertical;" edge="1" parent="1" target="E-PpELVEflnv67zB8whN-24">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="537" y="180" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-32" value="&lt;b&gt;ref &lt;/b&gt;Se connecter" style="shape=umlFrame;whiteSpace=wrap;html=1;fontFamily=Verdana;fontSize=11;width=100;height=30;" vertex="1" parent="1">
+          <mxGeometry x="480" y="250" width="300" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="695" y="314" as="sourcePoint" />
+            <mxPoint x="540" y="314" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="670" y="314" />
+              <mxPoint x="670" y="314" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-34" value="&lt;font face=&quot;Verdana&quot; style=&quot;font-size: 11px;&quot;&gt;4. message d&#39;erreurs&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="E-PpELVEflnv67zB8whN-33">
+          <mxGeometry x="0.1656" y="8" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-35" value="[&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;email ou mot de passe invalide&lt;/span&gt;]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=11;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="473" y="286" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-36" value="" style="endArrow=none;dashed=1;html=1;rounded=0;fontFamily=Verdana;fontSize=11;exitX=0.013;exitY=0.467;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="483.9" y="352.74" as="sourcePoint" />
+            <mxPoint x="780" y="353" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-39" value="[else]" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=11;fontFamily=Verdana;" vertex="1" parent="1">
+          <mxGeometry x="520" y="380" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="695" y="420" as="sourcePoint" />
+            <mxPoint x="540" y="420" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="670" y="420" />
+              <mxPoint x="670" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-41" value="&lt;font face=&quot;Verdana&quot;&gt;5. page d&#39;accueil&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="E-PpELVEflnv67zB8whN-40">
+          <mxGeometry x="0.1656" y="8" relative="1" as="geometry">
+            <mxPoint x="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E-PpELVEflnv67zB8whN-45" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;3. résultat&lt;/font&gt;" style="html=1;verticalAlign=bottom;endArrow=block;labelBackgroundColor=none;fontFamily=Verdana;fontSize=12;elbow=vertical;edgeStyle=orthogonalEdgeStyle;curved=1;startArrow=none;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="711" y="215" as="sourcePoint" />
+            <mxPoint x="711" y="225" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="741" y="215" />
+              <mxPoint x="741" y="225" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
