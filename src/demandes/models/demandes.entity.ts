@@ -65,15 +65,4 @@ instagram: string;
 @Column({ nullable: true })
 twitter: string;
 
-
-@Column()
-association_id: number;
-
-
-
-
-
-
-
-
 }

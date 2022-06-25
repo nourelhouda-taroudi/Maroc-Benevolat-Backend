@@ -9,11 +9,13 @@ import { User } from './entities/user';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { DemandesModule } from 'src/demandes/demandes.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User, Otp]),
     AssociationModule,
+    DemandesModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '60s' },

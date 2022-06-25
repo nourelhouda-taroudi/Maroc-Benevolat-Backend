@@ -1,47 +1,31 @@
-import { Otp } from './../entities/otp';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
-import { createQueryBuilder, Repository } from 'typeorm';
-import { AssociationService } from './../../association/services/association.service';
+import * as otpGenerator from 'otp-generator';
+import { from, Observable } from 'rxjs';
+import { DemandesService } from 'src/demandes/services/demandes.service';
+import { MailService } from 'src/modules/common/services/mail/mail.service';
+import { Repository } from 'typeorm';
+import { UserInter } from '../entities/user.interface';
 import { UserSignUpDTO } from './../dto/user-register.dto';
 import { UserSignInDTO } from './../dto/user-signin.dto';
+import { Otp } from './../entities/otp';
 import { User } from './../entities/user';
-import * as otpGenerator from 'otp-generator';
-import { MailService } from 'src/modules/common/services/mail/mail.service';
-import { UserInter } from '../entities/user.interface';
-import { from, Observable } from 'rxjs';
-import { Association } from 'src/modules/association/entities/association.entity';
 
 @Injectable()
 export class UserService {
   constructor(
-    private readonly associationService: AssociationService,
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
     @InjectRepository(Otp)
     private readonly otpRepository: Repository<Otp>,
     private readonly mailServicce: MailService,
+    private readonly demandesService: DemandesService
   ) {}
   async signUp(userDTO: UserSignUpDTO) {
-    const { email, firstname, lastname, gender, password, phone, association } =
-      userDTO;
-    const newAssiociation = await this.associationService.createAssociation(
-      association,
-    );
-    const saltOrRounds = 10;
-    const hash = await bcrypt.hash(password, saltOrRounds);
-    let user = new User();
-    user.firstname = firstname;
-    user.lastname = lastname;
-    user.email = email;
-    user.gender = gender;
-    user.phone = phone;
-    user.password = hash;
-    user.association = newAssiociation;
-    return this.userRepository.save(user);
+    return this.demandesService.createUserDemande(userDTO);
   }
   async signIn(userDto: UserSignInDTO) {
     // Check if user existe using email

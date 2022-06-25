@@ -56,7 +56,6 @@ export interface Demande{
   
 
     twitter: string;
-    association_id:number
 
 
 
