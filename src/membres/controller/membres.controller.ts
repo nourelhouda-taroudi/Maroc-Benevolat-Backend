@@ -1,7 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { MembresEntity } from '../models/membres.entity';
 import { Membres } from '../models/membres.interface';
 import { MembresService } from '../service/membres.service';
@@ -40,10 +40,20 @@ export class MembresController {
         return this.membreService.findAdresse(id_asso);
     }
 
+   
+    @Put(':id')
+    update(
+      @Param('id') id: number,
+      @Body() membre: Membres,
+    ): Observable<UpdateResult> {
+      return this.membreService.updateMembre(id, membre);
+    }
+
+  
+
     @Delete(':id')
     delete(@Param('id') id: number): Observable<DeleteResult> {
         return this.membreService.deletMembre(id);
     }
-
 
 }

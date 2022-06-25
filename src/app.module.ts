@@ -16,6 +16,8 @@ import { DemandesModule } from './demandes/demandes.module';
 import { SuppressionModule } from './suppression/suppression.module';
 import { MembresModule } from './membres/membres.module';
 import { LikesModule } from './likes/likes.module';
+import { SignalerModule } from './signaler/signaler.module';
+
 
 
 
@@ -78,6 +80,7 @@ import { LikesModule } from './likes/likes.module';
     SuppressionModule,
     MembresModule,
     LikesModule,
+    SignalerModule,
 
   ],
 
