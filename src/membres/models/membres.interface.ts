@@ -4,7 +4,6 @@ export interface Membres{
     id_asso:number;
     name:string;
     lastname:string;
-
     email:string;
     position: string
   
