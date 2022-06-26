@@ -35,9 +35,9 @@ export class UserController {
     }
 
   @Post()
-    create(@Body() user: UserInter): Observable<UserInter>
+    create(@Query('associationId') associationId:number,@Body() user: UserInter): Observable<UserInter>
     {
-      return this.userService.createUser(user);
+      return this.userService.createUser(associationId,user);
     }
 
   @Post('otpValidation')

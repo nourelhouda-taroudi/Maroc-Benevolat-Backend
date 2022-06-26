@@ -147,11 +147,10 @@ export class UserService {
   }
 
 
-  
 
 
-createUser(user : UserInter): Observable<UserInter>{
-
+createUser(associantionId:number,user : UserInter): Observable<UserInter>{
+    user.association_id=associantionId;
     return from(this.userRepository.save(user));
 
 }
