@@ -67,7 +67,7 @@ import { SignalerModule } from './signaler/signaler.module';
           from: `${config.get('APP_NAME')} <${config.get('EMAIL')}>`,
         },
         template: {
-          dir: path.join(),
+           dir: path.join()+'/src/template',
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
